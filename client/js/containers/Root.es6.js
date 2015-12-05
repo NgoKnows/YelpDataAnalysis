@@ -17,6 +17,9 @@ import { syncReduxAndRouter, routeReducer } from 'redux-simple-router'
 
 //Components
 import App from './App'
+import Home from 'components/Home'
+import TipsVsReviews from 'components/TipsVsReviews'
+
 
 const finalCreateStore = compose(
     applyMiddleware(thunk)
@@ -35,6 +38,8 @@ export default class Root extends Component {
                 <Provider store={store}>
                     <Router history={history}>
                         <Route path="/" component={App}>
+                            <IndexRoute component={Home}/>
+                            <Route path="tipsvsreviews" component={TipsVsReviews} />
                         </Route>
                     </Router>
                 </Provider>
