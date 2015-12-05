@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import * as actions from 'flux/actions/actions'
-import TransitionGroup from 'components/RouteCSSTransitionGroup'
 
 import 'velocity-animate'
 import 'velocity-animate/velocity.ui'
