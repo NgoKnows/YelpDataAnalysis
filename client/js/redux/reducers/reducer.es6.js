@@ -1,5 +1,7 @@
 import { ADD_TODO } from '../constants/constants'
 import Immutable from 'immutable'
+import { combineReducers } from 'redux-immutablejs'
+import { routeReducer } from 'redux-simple-router'
 
 //beginning state of app
 let initialState = Immutable.Map({
@@ -17,3 +19,11 @@ export default function app(state = initialState, action) {
             return state;
     }
 }
+
+
+const rootReducer = combineReducers({
+    app,
+    routing: routeReducer
+});
+
+export default rootReducer;

@@ -1,5 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
+var json = require('json-loader')
 var ROOT_DIR = __dirname;
 
 module.exports = {
@@ -45,6 +46,10 @@ module.exports = {
                 test: /\.css$/,
                 loader: "style-loader!css-loader"
             },
+            {
+                test: /\.json$/,
+                loader: 'json'
+            }
         ]
     }
 };
