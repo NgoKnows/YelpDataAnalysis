@@ -86,7 +86,7 @@ class App extends Component {
         return (
             <div>
                 {backArrow}
-                <div style={STYLES.container}>
+                <div id="app" style={STYLES.container}>
                     <VelocityTransitionGroup
                         component="div"
                         enter={enterAnimation}
@@ -115,7 +115,6 @@ function mapDispatchToProps(dispatch) {
 
 const STYLES = {
     container: {
-        padding: '5rem 25rem',
     },
     arrow: {
         fontSize: '3.5rem',

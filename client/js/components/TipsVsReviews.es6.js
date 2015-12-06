@@ -99,7 +99,7 @@ class TipsVsReviews extends Component {
                     component="div"
                     enter={enterAnimation}
                     leave={leaveAnimation}>
-                    <div style={[STYLES.textBox, STYLES[correct]]} key={type+selected}>
+                    <div id="textBox" style={[STYLES.textBox, STYLES[correct]]} key={type+selected}>
                         {texts[type].get(selected)}
                     </div>
                 </VelocityTransitionGroup>
@@ -142,7 +142,7 @@ const STYLES = {
         fontSize: '1.5rem'
     },
     textBox: {
-        height: '8rem'
+        //height: '10rem'
     },
     0: {
         color: 'red'
