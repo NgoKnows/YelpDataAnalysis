@@ -39,29 +39,23 @@ app.use(function *(next) {
 });
 
 
-//// Routing
-//// --------------------------------------------------
-//import * as factualAPI from './server/api/factualAPI'
-//import * as eventAPI from './server/api/eventsAPI'
-//
-//import router from 'koa-router'
-//import bodyParser from 'koa-body'
-//
-//let myRouter = router();
-//let myBodyParser = bodyParser();
-//
-//myRouter
-//    .get('/api/suggestions/:searchTerm', factualAPI.getSuggestions)
-//    .get('/api/business/:id', factualAPI.getPlaceInfo)
-//
-//myRouter
-//    .get('/api/events', eventAPI.getEvents)
-//    .get('/api/events/:id', eventAPI.getEvent)
-//    .post('/api/events', myBodyParser, eventAPI.addEvent)
-//
-//app
-//    .use(myRouter.routes())
-//    .use(myRouter.allowedMethods());
+// Routing
+// --------------------------------------------------
+import * as guessAPI from './server/guessAPI'
+
+import router from 'koa-router'
+import bodyParser from 'koa-body'
+
+let myRouter = router();
+let myBodyParser = bodyParser();
+
+myRouter
+    .get('/api/guess', guessAPI.getGuesses)
+    .post('/api/guess', myBodyParser, guessAPI.addGuess)
+
+app
+    .use(myRouter.routes())
+    .use(myRouter.allowedMethods());
 
 
 // Start Server
@@ -78,9 +72,9 @@ httpServer.listen(port, () => {
 
 // Live Updating
 // --------------------------------------------------
-import * as eventService from './server/api/service/events'
+import * as guessService from './server/service/guess'
 import SocketIO from 'socket.io'
 
 let io = SocketIO(httpServer)
 
-eventService.liveUpdates(io);
+guessService.liveUpdates(io);

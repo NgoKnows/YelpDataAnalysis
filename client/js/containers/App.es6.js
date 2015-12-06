@@ -67,6 +67,10 @@ var leaveAnimation = {
 
 @Radium
 class App extends Component {
+    componentWillMount() {
+        this.props.actions.getInitialGuesses();
+    }
+
     render() {
         const { dispatch, routing, actions } = this.props;
 
@@ -111,7 +115,7 @@ function mapDispatchToProps(dispatch) {
 
 const STYLES = {
     container: {
-        padding: '7rem',
+        padding: '5rem 25rem',
     },
     arrow: {
         fontSize: '3.5rem',

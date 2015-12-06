@@ -20,10 +20,12 @@ import App from './App'
 import Home from 'components/Home'
 import TipsVsReviews from 'components/TipsVsReviews'
 
+import * as actions from 'flux/actions/actions'
+import setUpRealtime from '../Realtime.es6.js'
 
 const finalCreateStore = compose(
-    applyMiddleware(thunk)
-    //devTools()
+    applyMiddleware(thunk),
+    devTools()
 )(createStore);
 
 const store = finalCreateStore(Reducer);
@@ -35,17 +37,26 @@ syncReduxAndRouter(history, store, (state) => state.get('routing'));
 export default class Root extends Component {
     render() {
         return (
+            <div>
                 <Provider store={store}>
                     <Router history={history}>
                         <Route path="/" component={App}>
-                            <IndexRoute component={TipsVsReviews}/>
+                            <IndexRoute component={Home}/>
                             <Route path="tipsvsreviews" component={TipsVsReviews} />
                         </Route>
                     </Router>
                 </Provider>
+            </div>
         )
     }
 }
+
+setUpRealtime(store, actions);
+
 //<IndexRoute component={Map}/>
 //<Route path="/list" component={List} />
 //    <Route path="/form" component={Form} />
+//
+//<DebugPanel top left bottom>
+//    <DevTools store={store} monitor={LogMonitor} />
+//</DebugPanel>
