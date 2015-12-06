@@ -23,6 +23,9 @@ class Home extends Component {
                 <div>
                     <div onClick={() => actions.updatePath('/tipsvsreviews')} key="tipreview" style={STYLES.item}>tip or review?</div>
                 </div>
+                <div>
+                    <div onClick={() => actions.updatePath('/results')} key="results" style={STYLES.item}>results.</div>
+                </div>
             </div>
         );
     }
@@ -37,6 +40,7 @@ const STYLES = {
     item: {
         fontSize: '2rem',
         display: 'inline-block',
+        marginBottom: '0.5rem',
         padding: '0 2rem',
         ':hover': {
             opacity: '0.5',

@@ -19,6 +19,7 @@ import { syncReduxAndRouter, routeReducer } from 'redux-simple-router'
 import App from './App'
 import Home from 'components/Home'
 import TipsVsReviews from 'components/TipsVsReviews'
+import Results from 'components/Results'
 
 import * as actions from 'flux/actions/actions'
 import setUpRealtime from '../Realtime.es6.js'
@@ -43,6 +44,8 @@ export default class Root extends Component {
                         <Route path="/" component={App}>
                             <IndexRoute component={Home}/>
                             <Route path="tipsvsreviews" component={TipsVsReviews} />
+                            <Route path="results" component={Results} />
+
                         </Route>
                     </Router>
                 </Provider>
