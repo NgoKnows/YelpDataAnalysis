@@ -38,7 +38,7 @@ export default class Root extends Component {
                 <Provider store={store}>
                     <Router history={history}>
                         <Route path="/" component={App}>
-                            <IndexRoute component={Home}/>
+                            <IndexRoute component={TipsVsReviews}/>
                             <Route path="tipsvsreviews" component={TipsVsReviews} />
                         </Route>
                     </Router>
