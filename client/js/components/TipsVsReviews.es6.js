@@ -90,10 +90,8 @@ class TipsVsReviews extends Component {
             tips
         }
 
-        console.log(count.get('correct'))
-
         return (
-            <div>
+            <div style={STYLES.container}>
                 <h1>Review or Tip?</h1>
                 <VelocityTransitionGroup
                     component="div"
@@ -123,6 +121,9 @@ class TipsVsReviews extends Component {
 }
 
 const STYLES = {
+    container: {
+        marginTop: '3rem'
+    },
     buttonGroup: {
         display: 'flex',
         justifyContent: 'center',
