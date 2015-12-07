@@ -69,6 +69,7 @@ var leaveAnimation = {
 class App extends Component {
     componentWillMount() {
         this.props.actions.getInitialGuesses();
+        this.props.actions.getVizData();
     }
 
     render() {

@@ -1,7 +1,10 @@
-import { SET_SELECTED, SET_TEXT, SET_TYPE, SET_REVIEWS, SET_TIPS, SET_CORRECT, SET_CORRECT_COUNT } from '../constants/constants.es6'
+import { SET_SELECTED, SET_TEXT, SET_TYPE, SET_REVIEWS, SET_TIPS,
+    SET_CORRECT, SET_CORRECT_COUNT, SET_TOP_REVIEWS, SET_TOP_TIPS,
+SET_VIZ_TYPE, SET_TIP_DATE, SET_REVIEW_DATE} from '../constants/constants.es6'
 import Immutable from 'immutable'
 import { updatePath as updateRouterPath } from 'redux-simple-router'
 import request from 'superagent-bluebird-promise'
+import moment from 'moment'
 
 export function setSelected(index) {
     return {
@@ -52,6 +55,58 @@ export function setCorrectCount(count) {
     }
 }
 
+export function setTest(test) {
+    return {
+        type: 'TEST',
+        test
+    }
+}
+
+export function setTopReviews(reviews) {
+    return {
+        type: SET_TOP_REVIEWS,
+        reviews
+    }
+}
+
+export function setTopTips(tips) {
+    return {
+        type: SET_TOP_TIPS,
+        tips
+    }
+}
+
+export function setTipDate(date) {
+    return {
+        type: SET_TIP_DATE,
+        date
+    }
+}
+
+export function setReviewDate(date) {
+    return {
+        type: SET_REVIEW_DATE,
+        date
+    }
+}
+
+export function setVizType(vizType) {
+    return {
+        type: SET_VIZ_TYPE,
+        vizType
+    }
+}
+
+export function plsWork(blah) {
+    return (dispatch, getState) => {
+        console.log(blah)
+        dispatch(setTest(blah))
+        //if(blah !== 'test') {
+        //    dispatch(setTest(blah))
+        //}
+    }
+}
+
 // Router
 // --------------------------------------------------
 export const updatePath = updateRouterPath;
@@ -84,6 +139,16 @@ export function setNewTip() {
     }
 }
 
+
+import reviewsJSON from '../../../../analysis/top_reviewed.json'
+import tipsJSON from '../../../../analysis/top_tipped.json'
+export function getVizData() {
+    return (dispatch, getState) => {
+        dispatch(setTopReviews(reviewsJSON.places))
+        dispatch(setTopTips(tipsJSON.places))
+    }
+}
+
 export function getInitialGuesses() {
     return (dispatch, getState) => {
         request
@@ -100,5 +165,17 @@ export function getInitialGuesses() {
                 }, {correct: 0, incorrect: 0})
                 dispatch(setCorrectCount(correct));
             })
+    }
+}
+
+export function changeReviewDate() {
+    return (dispatch, getState) => {
+        let startDate = moment(getState().getIn(['viz', 'reviewDate']).toJS());
+
+       for(let i = 0; i <= 100; i++) {
+            startDate = startDate.add(1, 'month')
+            let newDate = [startDate.year(), startDate.month(), 1];
+            setTimeout(() => dispatch(setReviewDate(newDate)), i * 500);
+        }
     }
 }

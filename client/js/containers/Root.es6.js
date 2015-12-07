@@ -20,6 +20,7 @@ import App from './App'
 import Home from 'components/Home'
 import TipsVsReviews from 'components/TipsVsReviews'
 import Results from 'components/Results'
+import Viz from 'components/Viz'
 
 import * as actions from 'flux/actions/actions'
 import setUpRealtime from '../Realtime.es6.js'
@@ -45,7 +46,7 @@ export default class Root extends Component {
                             <IndexRoute component={Home}/>
                             <Route path="tipsvsreviews" component={TipsVsReviews} />
                             <Route path="results" component={Results} />
-
+                            <Route path="viz" component={Viz} />
                         </Route>
                     </Router>
                 </Provider>
@@ -60,6 +61,3 @@ setUpRealtime(store, actions);
 //<Route path="/list" component={List} />
 //    <Route path="/form" component={Form} />
 //
-//<DebugPanel top left bottom>
-//    <DevTools store={store} monitor={LogMonitor} />
-//</DebugPanel>

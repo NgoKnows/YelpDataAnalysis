@@ -4,36 +4,59 @@ import Radium from 'radium'
 import Button from 'components/Button'
 
 import { connect } from 'react-redux'
+
+import { VictoryPie } from 'victory'
+
 import { bindActionCreators } from 'redux'
 
 import * as actions from 'flux/actions/actions'
 
 @Radium
 class Results extends Component {
-    componentWillMount() {
-        //this.props.actions.setReviews(reviews);
-        //this.props.actions.setTips(tips);
+    componentWillReceiveProps(nextProps) {
+        if(this.props.count !== nextProps.count) {
+            this.props.actions.plsWork('')
+        }
     }
 
     render() {
-        //const { reviews, tips, selected, type, correct, count, actions } = this.props;
+        const { count, actions, test } = this.props;
+
+        const correctCount = count.get('correct');
+        const incorrectCount = count.get('incorrect');
+        const totalCount = correctCount + incorrectCount;
+
+        let results = [{x: `correct (${Math.trunc(correctCount/totalCount * 100)}%)`, y: correctCount},
+            {x: `incorrect (${Math.trunc(incorrectCount/totalCount * 100)}%)`, y: incorrectCount}]
 
         return (
-            <div></div>
+            <div>
+                <h1>Live Guessing Results</h1>
+                <VictoryPie
+                    animate={{velocity: 0.05, onEnd: () => actions.plsWork(5)}}
+                    data={results}
+                    sliceColors={['#00695C', '#c41200']}
+                    style={STYLES}/>
+            </div>
         );
     }
 }
 
-const STYLES = {}
+const STYLES = {
+    data: {
+        opacity: '.70'
+    },
+
+    labels: {
+        fontSize: '1.25rem',
+        fontFamily: 'lato',
+    }
+}
 
 function mapStateToProps(state) {
     return {
-        selected: state.getIn(['game', 'selected']),
-        type: state.getIn(['game', 'type']),
-        correct: state.getIn(['game', 'correct']),
-        reviews: state.getIn(['data', 'reviews']),
-        tips: state.getIn(['data', 'tips']),
-        count: state.getIn(['game', 'count'])
+        count: state.getIn(['game', 'count']),
+        test: state.getIn(['game', 'test'])
     };
 };
 
@@ -42,5 +65,6 @@ function mapDispatchToProps(dispatch) {
         actions : bindActionCreators(actions, dispatch)
     };
 };
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(Results)

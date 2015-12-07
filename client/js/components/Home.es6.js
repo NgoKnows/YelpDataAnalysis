@@ -26,6 +26,9 @@ class Home extends Component {
                 <div>
                     <div onClick={() => actions.updatePath('/results')} key="results" style={STYLES.item}>results.</div>
                 </div>
+                <div>
+                    <div onClick={() => actions.updatePath('/viz')} key="viz" style={STYLES.item}>viz.</div>
+                </div>
             </div>
         );
     }
