@@ -5,7 +5,7 @@ import Button from 'components/Button'
 
 import { connect } from 'react-redux'
 
-import { VictoryScatter, VictoryChart } from 'victory'
+import { VictoryScatter, VictoryChart, VictoryAxis } from 'victory'
 
 import moment from 'moment'
 
@@ -18,7 +18,7 @@ class Results extends Component {
 
     render() {
         const { topReviews, topTips, tipDate, reviewDate, vizType, actions } = this.props;
-        //console.log(topReviews)
+
         let data = this.getDataUpToDate();
         let date = moment(reviewDate.toJS());
 
@@ -27,13 +27,22 @@ class Results extends Component {
             <div>
                 <h1 onClick={() => actions.changeReviewDate()}>Tips vs Reviews</h1>
                     <h2>{date.format('MMMM YYYY')}</h2>
-                    <VictoryScatter
+                <VictoryChart
+                    height={500}
+                    width={800}
+                    style={STYLES.chart}>
+                    <VictoryAxis
+                        label="Reviews"
+                    />
+                    <VictoryAxis dependentAxis
+                        label="Tips"
+                    />
+                <VictoryScatter
                         domain={{x: [0, domain.maxX], y: [0, domain.maxY]}}
-                        style={STYLES}
+                        style={STYLES.viz}
                         animate={{delay: 0.5, velocity: 0.1}}
-                        height={600}
-                        width={800}
                         data={data}/>
+                </VictoryChart>
             </div>
         );
     }
@@ -54,7 +63,7 @@ class Results extends Component {
         } else if (maxY < 1000) {
             maxY = 1000
         } else {
-            maxY = 4000
+            maxY = 1500
         }
 
         return {maxX, maxY};
@@ -90,13 +99,21 @@ class Results extends Component {
 }
 
 const STYLES = {
-    data: {
-        opacity: '.70'
-    },
+    viz: {
+        data: {
+            opacity: '.70'
+        },
 
-    labels: {
-        fontSize: '1.25rem',
-        fontFamily: 'lato',
+        labels: {
+            fontSize: '1.25rem',
+            fontFamily: 'lato',
+        }
+    },
+    chart: {
+        tickLabels: {fontSize: 10, padding: 5}
+    },
+    container : {
+
     }
 }
 
