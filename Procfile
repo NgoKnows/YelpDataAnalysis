@@ -1,1 +1,1 @@
-web: webpack -p && npm start && node server.babel.js
+web: webpack -p && node server.babel.js
