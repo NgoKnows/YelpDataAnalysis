@@ -122,7 +122,6 @@ class TipsVsReviews extends Component {
 
 const STYLES = {
     container: {
-        marginTop: '2.5rem'
     },
     buttonGroup: {
         display: 'flex',

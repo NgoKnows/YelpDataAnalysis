@@ -121,8 +121,7 @@ const STYLES = {
         fontSize: '3.5rem',
     },
     arrowContainer: {
-        position: 'fixed',
-        margin: '1rem',
+        margin: '0.5rem 0.5rem 0 0.5rem',
         padding: '0 1rem',
         ':hover': {
             opacity: '0.5',

@@ -28,18 +28,26 @@ class Results extends Component {
                 <h1 onClick={() => actions.changeReviewDate()}>Tips vs Reviews</h1>
                     <h2>{date.format('MMMM YYYY')}</h2>
                 <VictoryChart
+                    padding={{
+                        top: 30,
+                        bottom: 50,
+                        left: 100,
+                        right: 100
+                      }}
+                    domain={{x: [0, domain.maxX], y: [0, domain.maxY]}}
                     height={500}
-                    width={800}>
+                    width={1000}>
                     <VictoryAxis
-                        animate={{delay: 0.5, velocity: 0.1}}
+                        style={STYLES.chart}
+                        animate={{velocity: 0.05}}
                         label="Reviews"
                     />
                     <VictoryAxis dependentAxis
-                         animate={{delay: 0.5, velocity: 0.1}}
+                         style={STYLES.chart}
+                         animate={{velocity: 0.05}}
                         label="Tips"
                     />
                 <VictoryScatter
-                        domain={{x: [0, domain.maxX], y: [0, domain.maxY]}}
                         style={STYLES.viz}
                         animate={{delay: 0.5, velocity: 0.1}}
                         data={data}/>
@@ -53,18 +61,30 @@ class Results extends Component {
         let maxY = data.reduce((prev, cur) => Math.max(cur.y, prev), 0)
         if(maxX < 100) {
             maxX = 100;
+        } else if (maxX < 300) {
+            maxX = 300
+        } else if (maxX < 500) {
+            maxX = 500
         } else if (maxX < 1000) {
             maxX = 1000
+        } else if (maxX < 2000) {
+            maxX = 2000
         } else {
             maxX = 4000
         }
 
         if(maxY < 100) {
             maxY = 100;
+        } else if (maxY < 300) {
+            maxY = 300
+        } else if (maxY < 500) {
+            maxY = 500
         } else if (maxY < 1000) {
             maxY = 1000
+        } else if (maxY < 2000) {
+            maxY = 2000
         } else {
-            maxY = 1500
+            maxY = 4000
         }
 
         return {maxX, maxY};
@@ -91,7 +111,7 @@ class Results extends Component {
                 j++
             }
 
-            return {x: i, y: j, label: business.get('name')}
+            return {x: i, y: j, label: business.get('name'), size: Math.pow(Math.log(i + j), 2) / 3}
 
 
         })
@@ -111,10 +131,8 @@ const STYLES = {
         }
     },
     chart: {
-        tickLabels: {fontSize: 10, padding: 5}
-    },
-    container : {
-
+        tickLabels: {fontSize: '1rem'},
+        axisLabel: {fontSize: '1.5rem'}
     }
 }
 
