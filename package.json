@@ -4,9 +4,10 @@
   "description": "Website for INFO370 (Data Science) Final Project",
   "main": "webpack.config.js",
   "scripts": {
-    "build": "npm run clean && npm run build:webpack",
+    "build": "npm run build:webpack",
     "start": "node server.babel.js",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "build:webpack": "NODE_ENV=production webpack --config webpack.config.prod.js",
     "lint": "eslint client"
   },
   "repository": {

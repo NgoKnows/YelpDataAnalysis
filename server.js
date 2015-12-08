@@ -7,16 +7,27 @@ const app = Koa();
 import webpackDevMiddleware from 'koa-webpack-dev-middleware'
 import webpackHotMiddleware from 'koa-webpack-hot-middleware'
 import webpack from 'webpack'
-import config from './webpack.config'
+import prodConfig from './webpack.config.prod'
+import devConfig from './webpack.config.dev'
 
-const compiler = webpack(config);
+let config;
+let compiler;
+if(process.env.NODE_ENV === 'production') {
+    config = prodConfig
+    compiler = webpack(config);
+} else {
+    config = devConfig;
+    compiler = webpack(config);
+    app.use(webpackHotMiddleware(compiler));
+}
 
-app.use(webpackDevMiddleware(compiler, {
-    noInfo: true,
-    publicPath: config.output.publicPath
-}));
+//console.log(process.env.NODE_ENV)
+    app.use(webpackDevMiddleware(compiler, {
+        noInfo: true,
+        publicPath: config.output.publicPath
+    }));
 
-app.use(webpackHotMiddleware(compiler));
+
 
 // Serve Static Files
 // --------------------------------------------------

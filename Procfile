@@ -1,1 +1,0 @@
-web: webpack -p && node server.babel.js

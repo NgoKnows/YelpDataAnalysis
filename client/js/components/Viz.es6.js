@@ -29,12 +29,13 @@ class Results extends Component {
                     <h2>{date.format('MMMM YYYY')}</h2>
                 <VictoryChart
                     height={500}
-                    width={800}
-                    style={STYLES.chart}>
+                    width={800}>
                     <VictoryAxis
+                        animate={{delay: 0.5, velocity: 0.1}}
                         label="Reviews"
                     />
                     <VictoryAxis dependentAxis
+                         animate={{delay: 0.5, velocity: 0.1}}
                         label="Tips"
                     />
                 <VictoryScatter
