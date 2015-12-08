@@ -16,9 +16,11 @@ let dataState = Immutable.Map({
 function data(state = dataState, action) {
     switch(action.type) {
         case SET_REVIEWS:
+            console.log(action.reviews)
             return state.set('reviews', Immutable.List(action.reviews));
 
         case SET_TIPS:
+            console.log(action.tips)
             return state.set('tips', Immutable.List(action.tips));
 
         default:

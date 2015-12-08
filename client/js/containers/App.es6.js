@@ -116,6 +116,7 @@ function mapDispatchToProps(dispatch) {
 
 const STYLES = {
     container: {
+        marginTop: '1rem'
     },
     arrow: {
         fontSize: '3.5rem',
@@ -123,6 +124,8 @@ const STYLES = {
     arrowContainer: {
         margin: '0.5rem 0.5rem 0 0.5rem',
         padding: '0 1rem',
+        position: 'absolute',
+        top: 0,
         ':hover': {
             opacity: '0.5',
             cursor: 'pointer'

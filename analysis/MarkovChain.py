@@ -74,7 +74,7 @@ def main():
     with open('reviews.json', 'w') as outfile:
         json.dump(reviews, outfile)
     with open('tips.json', 'w') as outfile:
-        json.dump(reviews, outfile)
+        json.dump(tips, outfile)
 
 if __name__ == "__main__":
     main()

@@ -16,10 +16,8 @@ export default function setupRealtime(store, actions) {
             return value + 1
         });
 
-        console.log(newCount)
 
         store.dispatch(actions.setCorrectCount(newCount))
-        console.log('what the hell it worked!?');
     });
     return io;
 }

@@ -134,8 +134,16 @@ export function postGuess(guess) {
 
 export function setNewTip() {
     return (dispatch, getState) => {
-        dispatch(setSelected(parseInt(Math.random() * (100))))
         dispatch(setType(Math.round((Math.random() * (1))) === 0 ? 'reviews' : 'tips'))
+        let type = getState().getIn(['game', 'type']);
+        let textArray;
+        if(type === 0){
+            textArray = getState().getIn(['data', 'reviews']);
+        } else {
+            textArray = getState().getIn(['data', 'tips']);
+        }
+        dispatch(setSelected(parseInt(Math.random() * (textArray.size))))
+
     }
 }
 

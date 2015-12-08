@@ -12,7 +12,7 @@ class Home extends Component {
         const { actions } = this.props;
 
         return (
-            <div>
+            <div style={STYLES.container}>
                 <h1 style={STYLES.title}>yelp data analysis</h1>
                 <div>
                     <div onClick={() => actions.updatePath('/background')} key="background" style={STYLES.item}>background.</div>
@@ -35,6 +35,9 @@ class Home extends Component {
 }
 
 const STYLES = {
+    container: {
+        marginTop: '5rem'
+    },
     title: {
         letterSpacing: '7px',
         fontSize: '2.25rem',

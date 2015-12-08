@@ -1,13 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import Radium from 'radium'
 
-import Button from 'components/Button'
-
 import { connect } from 'react-redux'
 
 import { VictoryScatter, VictoryChart, VictoryAxis } from 'victory'
 
 import moment from 'moment'
+
+import Button from 'components/Button'
 
 import { bindActionCreators } from 'redux'
 
@@ -25,8 +25,9 @@ class Results extends Component {
         let domain = this.getDomain(data)
         return (
             <div>
-                <h1 onClick={() => actions.changeReviewDate()}>Tips vs Reviews</h1>
-                    <h2>{date.format('MMMM YYYY')}</h2>
+                <h1>Tips vs Reviews</h1>
+                    <Button handleClick={() => actions.changeReviewDate()} type="button" text="Start!"/>
+                <h2>{date.format('MMMM YYYY')}</h2>
                 <VictoryChart
                     padding={{
                         top: 30,
@@ -35,7 +36,7 @@ class Results extends Component {
                         right: 100
                       }}
                     domain={{x: [0, domain.maxX], y: [0, domain.maxY]}}
-                    height={500}
+                    height={450}
                     width={1000}>
                     <VictoryAxis
                         style={STYLES.chart}
@@ -132,7 +133,6 @@ const STYLES = {
     },
     chart: {
         tickLabels: {fontSize: '1rem'},
-        axisLabel: {fontSize: '1.5rem'}
     }
 }
 
