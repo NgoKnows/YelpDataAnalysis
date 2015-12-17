@@ -115,6 +115,11 @@ class TipsVsReviews extends Component {
                         ?
                     </div>
                 </div>
+                <div style={STYLES.description}>
+                     <span style={STYLES.star}>*</span> This text was generated using the Markov Chain process, which uses the text from tips and reviews
+                    to generate what are essentially faux-reviews and faux-tips. We want to see if it is possible
+                    to differentiate the two based solely on the text generated.
+                </div>
             </div>
         );
     }
@@ -150,6 +155,14 @@ const STYLES = {
     },
     1: {
         color: 'green'
+    },
+    description: {
+        fontSize: '0.85rem',
+        color: 'grey'
+    },
+    star: {
+        fontSize: '1rem',
+        color: '#c41200'
     }
 
 }
