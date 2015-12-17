@@ -1,6 +1,6 @@
 import { SET_SELECTED, SET_TEXT, SET_TYPE, SET_REVIEWS, SET_TIPS,
     SET_CORRECT, SET_CORRECT_COUNT, SET_TOP_REVIEWS, SET_TOP_TIPS,
-SET_VIZ_TYPE, SET_TIP_DATE, SET_REVIEW_DATE} from '../constants/constants.es6'
+SET_VIZ_TYPE, SET_TIP_DATE, SET_REVIEW_DATE, UPDATE_MEMO_TABLE } from '../constants/constants.es6'
 import Immutable from 'immutable'
 import { updatePath as updateRouterPath } from 'redux-simple-router'
 import request from 'superagent-bluebird-promise'
@@ -80,6 +80,14 @@ export function setTipDate(date) {
     return {
         type: SET_TIP_DATE,
         date
+    }
+}
+
+export function updateMemoTable(name, value) {
+    return {
+        type: UPDATE_MEMO_TABLE,
+        name,
+        value
     }
 }
 

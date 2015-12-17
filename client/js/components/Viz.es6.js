@@ -15,6 +15,13 @@ import * as actions from 'flux/actions/actions'
 
 @Radium
 class Results extends Component {
+    shouldComponentUpdate(nextProps, nextState) {
+        if (nextProps.memoTable !== this.props.memoTable) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 
     render() {
         const { topReviews, topTips, tipDate, reviewDate, vizType, actions } = this.props;
@@ -92,15 +99,26 @@ class Results extends Component {
     }
 
     getDataUpToDate() {
-        const { topReviews, topTips, tipDate, reviewDate, vizType, actions } = this.props;
+        const { topReviews, reviewDate, memoTable, actions } = this.props;
 
         let date = moment(reviewDate.toJS());
-        //let data = [{x: tipTotalToDate, y: reviewTotalToDate}]
 
+        //store it in state as {business.get('name'): {x: i, y: j}
         //total up tips and reviews up to date
         let data = topReviews.map((business) => {
-            let i = 0;
-            let j = 0;
+            name = business.get('name')
+
+            let i;
+            let j;
+            if (memoTable.has(name)) {
+                i = memoTable.get(name).i
+                j = memoTable.get(name).j
+            } else {
+                i = 0
+                j = 0
+                actions.updateMemoTable(name, {i, j})
+            }
+
             let reviews = business.get('reviews')
             let tips = business.get('tips')
 
@@ -112,6 +130,7 @@ class Results extends Component {
                 j++
             }
 
+            actions.updateMemoTable(name, {i, j})
             return {x: i, y: j, label: business.get('name'), size: Math.pow(Math.log(i + j), 2) / 3}
 
 
@@ -143,6 +162,7 @@ function mapStateToProps(state) {
         tipDate: state.getIn(['viz', 'tipDate']),
         reviewDate: state.getIn(['viz', 'reviewDate']),
         vizType: state.getIn(['viz', 'vizType']),
+        memoTable: state.getIn(['viz', 'memoTable'])
     };
 };
 

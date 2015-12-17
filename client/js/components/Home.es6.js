@@ -13,21 +13,23 @@ class Home extends Component {
 
         return (
             <div style={STYLES.container}>
-                <h1 style={STYLES.title}>yelp data analysis</h1>
+                <h1 style={STYLES.title}>classifying yelp tips</h1>
                 <div>
                     <div onClick={() => actions.updatePath('/background')} key="background" style={STYLES.item}>background.</div>
                 </div>
                 <div>
-                    <div onClick={() => actions.updatePath('/methods')} key="methods" style={STYLES.item}>methods.</div>
+                    <div key="methods" style={STYLES.item}>
+                        <a style={STYLES.link} href="analysis/YelpClassifyingTips.pdf">methods.</a>
+                    </div>
                 </div>
                 <div>
                     <div onClick={() => actions.updatePath('/tipsvsreviews')} key="tipreview" style={STYLES.item}>tip or review?</div>
                 </div>
                 <div>
-                    <div onClick={() => actions.updatePath('/results')} key="results" style={STYLES.item}>results.</div>
+                    <div onClick={() => actions.updatePath('/results')} key="results" style={STYLES.item}>guessing results.</div>
                 </div>
                 <div>
-                    <div onClick={() => actions.updatePath('/viz')} key="viz" style={STYLES.item}>viz.</div>
+                    <div onClick={() => actions.updatePath('/viz')} key="viz" style={STYLES.item}>tip vs review viz.</div>
                 </div>
             </div>
         );
@@ -52,6 +54,10 @@ const STYLES = {
             opacity: '0.5',
             cursor: 'pointer'
         }
+    },
+    link: {
+        textDecoration: 'none',
+        color: 'inherit'
     }
 }
 

@@ -20,7 +20,7 @@ class Results extends Component {
     }
 
     render() {
-        const { count, actions, test } = this.props;
+        const { count, actions } = this.props;
 
         const correctCount = count.get('correct');
         const incorrectCount = count.get('incorrect');
@@ -37,6 +37,7 @@ class Results extends Component {
                     data={results}
                     sliceColors={['#00695C', '#c41200']}
                     style={STYLES}/>
+                <div style={STYLES.caption}>Results from 'Tip vs Review?' game</div>
             </div>
         );
     }
@@ -50,6 +51,10 @@ const STYLES = {
     labels: {
         fontSize: '1.25rem',
         fontFamily: 'lato',
+    },
+
+    caption: {
+        marginLeft: '4rem'
     }
 }
 

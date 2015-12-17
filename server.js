@@ -21,11 +21,10 @@ if(process.env.NODE_ENV === 'production') {
     app.use(webpackHotMiddleware(compiler));
 }
 
-//console.log(process.env.NODE_ENV)
-    app.use(webpackDevMiddleware(compiler, {
-        noInfo: true,
-        publicPath: config.output.publicPath
-    }));
+app.use(webpackDevMiddleware(compiler, {
+    noInfo: true,
+    publicPath: config.output.publicPath
+}));
 
 
 
@@ -34,8 +33,14 @@ if(process.env.NODE_ENV === 'production') {
 import path from 'path'
 import serve from 'koa-static'
 
+//serves index.html
 app.use(serve(path.resolve('client')))
 
+//serves team images
+app.use(serve(path.join('client', 'images')))
+
+//serves paper
+app.use(serve(path.join('client', 'analysis')))
 
 // Error Handling
 // --------------------------------------------------

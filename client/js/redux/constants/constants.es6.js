@@ -10,3 +10,4 @@ export const SET_TOP_TIPS = 'SET_TOP_TIPS';
 export const SET_TOP_REVIEWS = 'SET_TOP_REVIEWS'
 export const SET_TIP_DATE = 'SET_TIP_DATE';
 export const SET_REVIEW_DATE = 'SET_REVIEW_DATE';
+export const UPDATE_MEMO_TABLE = 'UPDATE_MEMO_TABLE';

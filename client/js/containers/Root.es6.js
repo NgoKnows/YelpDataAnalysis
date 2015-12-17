@@ -18,6 +18,7 @@ import { syncReduxAndRouter, routeReducer } from 'redux-simple-router'
 //Components
 import App from './App'
 import Home from 'components/Home'
+import Background from 'components/Background'
 import TipsVsReviews from 'components/TipsVsReviews'
 import Results from 'components/Results'
 import Viz from 'components/Viz'
@@ -44,6 +45,7 @@ export default class Root extends Component {
                     <Router history={history}>
                         <Route path="/" component={App}>
                             <IndexRoute component={Home}/>
+                            <Route path="background" component={Background} />
                             <Route path="tipsvsreviews" component={TipsVsReviews} />
                             <Route path="results" component={Results} />
                             <Route path="viz" component={Viz} />

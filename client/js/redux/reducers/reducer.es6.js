@@ -1,6 +1,6 @@
 import { SET_REVIEWS, SET_SELECTED, SET_TEXT, SET_TIPS, SET_TYPE,
     SET_CORRECT, SET_CORRECT_COUNT, SET_TOP_REVIEWS, SET_TOP_TIPS,
-    SET_VIZ_TYPE, SET_TIP_DATE, SET_REVIEW_DATE } from '../constants/constants'
+    SET_VIZ_TYPE, SET_TIP_DATE, SET_REVIEW_DATE, UPDATE_MEMO_TABLE } from '../constants/constants'
 import Immutable from 'immutable'
 import { combineReducers } from 'redux-immutablejs'
 import { routeReducer } from 'redux-simple-router'
@@ -67,6 +67,7 @@ let vizState = Immutable.Map({
     topTips: Immutable.List(),
     tipDate: Immutable.List([2007, 1, 1]),
     reviewDate: Immutable.List([2007, 1, 1]),
+    memoTable: Immutable.Map(),
     vizType: ''
 })
 
@@ -80,6 +81,9 @@ function viz(state = vizState, action) {
 
         case SET_TIP_DATE:
             return state.set('tipDate', action.date)
+
+        case UPDATE_MEMO_TABLE:
+            return state.setIn(['memoTable', action.name], action.value)
 
         case SET_REVIEW_DATE:
             return state.set('reviewDate', Immutable.List(action.date))
